@@ -1,4 +1,15 @@
-# x-message-video-service
+<div align="center">
+  <img src="makey_banner.png" alt="xTeammors AI Video" width="600">
+</div>
+
+# x-teammors-video-service
+
+![JDK](https://img.shields.io/badge/JDK-21-blue?style=flat-square)
+![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.1.8-green?style=flat-square)
+![Redis](https://img.shields.io/badge/Redis-5.0%2B-red?style=flat-square)
+![Protocol](https://img.shields.io/badge/Protocol-Custom%20JSON-orange?style=flat-square)
+![License](https://img.shields.io/badge/License-MIT-lightgrey?style=flat-square)
+![Build](https://img.shields.io/badge/Build-Passing-brightgreen?style=flat-square)
 
 AI-enhanced video generation service - Distributed multi-instance, shared connection pool
 
