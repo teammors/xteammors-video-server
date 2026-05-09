@@ -1,0 +1,123 @@
+server:
+  port: 6666
+  shutdown: graceful
+
+spring:
+  application:
+    name: xteammors-video-service
+  lifecycle:
+    timeout-per-shutdown-phase: 10s
+  datasource:
+    url: jdbc:mysql://<IP:PORT>/xteam_videos?useUnicode=true&characterEncoding=utf8&serverTimezone=Asia/Shanghai&allowMultiQueries=true
+    username: <username>
+    password: <password>
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+      idle-timeout: 300000
+      connection-timeout: 20000
+      max-lifetime: 120000
+
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 100MB
+      max-request-size: 100MB
+
+  data:
+    redis:
+      host: <Redis IP>
+      port: <PORT>
+      username: default
+      password: <password>
+      database: 10
+      timeout: 10000ms
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.slf4j.Slf4jImpl
+  global-config:
+    db-config:
+      id-type: ASSIGN_ID
+      table-underline: true
+
+file:
+  upload:
+    path: /tmp/video-upload/
+
+third-party:
+  default-service: seedance-1-5-pro
+  services:
+    seedance-1-5-pro:
+      name: Seedance 1.5 Pro
+      description: 无人机穿越等复杂场景，沉浸式飞行体验
+      api-url: https://ark.cn-beijing.volces.com/api/v3
+      api-key: <Seedance api key>
+      max-concurrent: 5
+      model-id: doubao-seedance-1-5-pro-251215
+      connection-pool-size: 5
+      poll-interval-seconds: 30
+      max-poll-retries: 60
+
+    seedance-2-0:
+      name: Seedance 2.0
+      description: 适合生成短视频，风格多样，支持多种场景
+      api-url: https://ark.cn-beijing.volces.com/api/v3
+      api-key: <Seedance api key>
+      max-concurrent: 5
+      model-id: doubao-seedance-2-0-260128
+      connection-pool-size: 5
+      poll-interval-seconds: 30
+      max-poll-retries: 60
+
+    # https://platform.vidu.com/
+    vidu:
+      name: Vidu
+      description: Fast generation speed
+      api-url: https://api.vidu.com/ent/v2/img2video
+      api-key: <Vidu api key>
+      max-concurrent: 5
+      model-id: vidu2.0 # 可以改成: viduq3-pro-fast, viduq3-turbo, viduq3-pro, viduq2-pro-fast, viduq2-pro, viduq2-turbo, viduq1, viduq1-classic
+
+    # https://pixverse.ai/
+    pixverse:
+      name: PixVerse
+      description: AI艺术风格视频，创意无限，视觉效果出色
+      api-url: https://app-api.pixverseai.cn
+      api-key: <PixVerse api key>
+      max-concurrent: 3
+      model-id: v6 #v6 (推荐)、v5.6、v5.5、v5、v4.5、v4、v3.5
+
+    # https://veo3api.com/zh
+    veo-3-0:
+      name: Veo 3.0
+      description: Google AI视频生成，专业级输出
+      api-url: https://veo3api.com
+      api-key: <Veo api key>
+      max-concurrent: 2
+      model-id: veo3-fast
+
+    # https://bailian.console.aliyun.com/
+    happy-horse:
+      name: HappyHorse
+      description: 阿里云百炼-儿童友好内容，安全可靠
+      api-url: https://dashscope.aliyuncs.com
+      api-key: <HappyHorse api key>
+      max-concurrent: 3
+      model-id: happyhorse-1.0-i2v
+
+task:
+  scheduler:
+    enabled: true
+    cron: 0/5 * * * * ?
+
+graceful-shutdown:
+  wait-seconds: 10
+
+logging:
+  level:
+    org.apache.ibatis: INFO
+    org.springframework.jdbc: INFO
+    com.xteam.video.mapper: INFO
